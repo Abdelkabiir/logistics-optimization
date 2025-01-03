@@ -1,0 +1,65 @@
+<div class="container mx-auto p-4">
+  <form [formGroup]="optimizationForm" (ngSubmit)="onSubmit()">
+    <!-- Depot Section -->
+    <div formGroupName="depot" class="mb-6">
+      <h3 class="text-lg font-semibold mb-2">Depot Location</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <input type="number" formControlName="latitude" placeholder="Latitude" class="input">
+        <input type="number" formControlName="longitude" placeholder="Longitude" class="input">
+      </div>
+    </div>
+
+    <!-- Vehicles Section -->
+    <div formArrayName="vehicles" class="mb-6">
+      <div class="flex justify-between items-center mb-2">
+        <h3 class="text-lg font-semibold">Vehicles</h3>
+        <button type="button" (click)="addVehicle()" class="btn-secondary">Add Vehicle</button>
+      </div>
+
+      <div *ngFor="let vehicle of vehiclesFormArray.controls; let i=index" [formGroupName]="i" class="mb-4">
+        <div class="grid grid-cols-3 gap-4">
+          <input type="text" formControlName="id" placeholder="Vehicle ID" class="input">
+          <input type="number" formControlName="capacity" placeholder="Capacity" class="input">
+          <input type="number" formControlName="maxDistance" placeholder="Max Distance" class="input">
+        </div>
+      </div>
+    </div>
+
+    <!-- Delivery Points Section -->
+    <div formArrayName="deliveryPoints" class="mb-6">
+      <div class="flex justify-between items-center mb-2">
+        <h3 class="text-lg font-semibold">Delivery Points</h3>
+        <button type="button" (click)="addDeliveryPoint()" class="btn-secondary">Add Point</button>
+      </div>
+
+      <div *ngFor="let point of deliveryPointsFormArray.controls; let i=index" [formGroupName]="i" class="mb-4">
+        <div class="grid grid-cols-4 gap-4">
+          <input type="text" formControlName="id" placeholder="Location ID" class="input">
+          <input type="number" formControlName="latitude" placeholder="Latitude" class="input">
+          <input type="number" formControlName="longitude" placeholder="Longitude" class="input">
+          <input type="number" formControlName="demand" placeholder="Demand" class="input">
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-primary w-full">Optimize Routes</button>
+  </form>
+
+  @if (optimizationResult) {
+    <div class="mt-8">
+      <app-route-map
+        [routes]="optimizationResult.routes"
+        [activeRoutes]="activeRoutes">
+      </app-route-map>
+
+      <app-route-controls
+        [routes]="optimizationResult.routes"
+        (routeToggled)="onRouteToggle($event)">
+      </app-route-controls>
+
+      <app-route-stats
+        [metrics]="optimizationResult.metrics">
+      </app-route-stats>
+    </div>
+  }
+</div>

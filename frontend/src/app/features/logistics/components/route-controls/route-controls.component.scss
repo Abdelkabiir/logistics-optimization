@@ -1,0 +1,29 @@
+.controls-container {
+  padding: 1rem;
+  margin: 1rem 0;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.route-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.route-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  background: #f3f4f6;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #e5e7eb;
+  }
+
+  &.active {
+    background: #3b82f6;
+    color: white;
+  }
+}

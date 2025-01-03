@@ -1,0 +1,37 @@
+<div class="stats-container">
+  <h3 class="text-lg font-semibold mb-4">Route Statistics</h3>
+
+  @if (metrics) {
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">Total Distance</span>
+        <span class="stat-value">{{formatMetric(metrics.totalDistance, 'km')}}</span>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-label">Total Deliveries</span>
+        <span class="stat-value">{{metrics.totalDeliveries}}</span>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-label">Vehicles Used</span>
+        <span class="stat-value">{{metrics.vehiclesUsed}}</span>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-label">Average Utilization</span>
+        <span class="stat-value">{{formatMetric(metrics.averageUtilization, '%')}}</span>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-label">Total Cost</span>
+        <span class="stat-value">{{formatMetric(metrics.totalCost, '€')}}</span>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-label">Total Time</span>
+        <span class="stat-value">{{formatMetric(metrics.totalTime / 60, 'h')}}</span>
+      </div>
+    </div>
+  }
+</div>

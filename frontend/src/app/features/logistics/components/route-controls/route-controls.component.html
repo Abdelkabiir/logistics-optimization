@@ -1,0 +1,14 @@
+<div class="controls-container">
+  <h3 class="text-lg font-semibold mb-4">Route Controls</h3>
+
+  <div class="route-buttons">
+    @for (route of routes; track route.id) {
+      <button
+        [class.active]="isRouteActive(route.id)"
+        (click)="toggleRoute(route.id)"
+        class="route-button">
+        Route {{route.id}}
+      </button>
+    }
+  </div>
+</div>x
